@@ -1,40 +1,33 @@
 # 将豆瓣电影和读书同步到Notion
+> 基于[malinkang/douban2notion](https://github.com/malinkang/douban2notion)项目
+
+本项目通过Github Action每天定时同步豆瓣电影和读书到Notion，并生成热力图展示您的观影和阅读习惯。
 
 
-本项目通过Github Action每天定时同步豆瓣电影和读书到Notion。
+## 功能特点
 
-* 豆瓣电影预览效果：https://douban-movie.malinkang.com/
-* 豆瓣图书预览效果：https://douban-book.malinkang.com/
+- 自动同步豆瓣「想看/在看/看过」的电影到Notion数据库
+- 自动同步豆瓣「想读/在读/读过」的图书到Notion数据库
+- 记录评分、短评、观看/阅读日期等信息
+- 支持电影分类、导演、演员信息关联
+- 支持图书作者、分类信息关联
+- 生成年度热力图，直观展示您的观影和阅读习惯
+- 通过GitHub Actions实现每日自动同步
+
+## 环境变量配置
+
+需要在GitHub仓库的Secrets中设置以下环境变量：
+
+### 必需配置
+- `NOTION_TOKEN`: Notion API密钥
+- `NOTION_MOVIE_URL`: 电影数据库页面URL
+- `NOTION_BOOK_URL`: 图书数据库页面URL
+- `DOUBAN_NAME`: 豆瓣用户ID
+
+### 可选配置
+- `MOVIE_NOTION_TOKEN`: 电影数据库专用Notion TOKEN（如果与图书数据库分开）
+- `BOOK_NOTION_TOKEN`: 图书数据库专用Notion TOKEN（如果与电影数据库分开）
+- `AUTH_TOKEN`: 豆瓣认证Token（用于获取私有数据）
+- `YEAR`: 热力图显示的年份（默认为当前年份）
 
 
-## 使用
-
-> [!IMPORTANT]  
-> 关注公众号回复豆瓣获取教程，后续有更新也会第一时间在公众号里同步。
-
-![扫码_搜索联合传播样式-标准色版](https://github.com/malinkang/weread2notion/assets/3365208/191900c6-958e-4f9b-908d-a40a54889b5e)
-
-
-## 群
-> [!IMPORTANT]  
-> 欢迎加入群讨论。可以讨论使用中遇到的任何问题，也可以讨论Notion使用，后续我也会在群中分享更多Notion自动化工具。微信群失效的话可以添加我的微信malinkang，我拉你入群。
-
-| 微信群 | QQ群 |
-| --- | --- |
-| <div align="center"><img src="https://github.com/malinkang/Podcast2Notion/assets/3365208/f38804e6-fe05-4754-9188-122a08e43fec" ></div> | <div align="center"><img src="https://images.malinkang.com/2024/04/b225b17d60670e4a6ff3459bbde80d28.jpg" width="50%"></div> |
-
-
-## 捐赠
-
-如果你觉得本项目帮助了你，请作者喝一杯咖啡，你的支持是作者最大的动力。本项目会持续更新。
-
-| 支付宝支付 | 微信支付 |
-| --- | --- |
-| <div align="center"><img src="https://images.malinkang.com/2024/03/7fd0feb1145f19fab3821ff1d4631f85.jpg" width="50%"></div> | <div align="center"><img src="https://images.malinkang.com/2024/03/d34f577490a32d4440c8a22f57af41da.jpg" width="50%"></div> |
-
-## 其他项目
-* [WeRead2Notion-Pro](https://github.com/malinkang/weread2notion-pro)
-* [WeRead2Notion](https://github.com/malinkang/weread2notion)
-* [Podcast2Notion](https://github.com/malinkang/podcast2notion)
-* [Douban2Notion](https://github.com/malinkang/douban2notion)
-* [Keep2Notion](https://github.com/malinkang/keep2notion)
