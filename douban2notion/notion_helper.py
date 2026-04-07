@@ -86,6 +86,8 @@ class NotionHelper:
 
     def write_database_id(self, database_id):
         env_file = os.getenv('GITHUB_ENV')
+        if not env_file:
+            return
         # 将值写入环境文件
         with open(env_file, "a") as file:
             file.write(f"DATABASE_ID={database_id}\n")
@@ -122,6 +124,13 @@ class NotionHelper:
     def update_heatmap(self, block_id, url):
         # 更新 image block 的链接
         return self.client.blocks.update(block_id=block_id, embed={"url": url})
+
+    @retry(stop_max_attempt_number=3, wait_fixed=5000)
+    def update_movie_database(self):
+        # 保留这个兼容入口，避免 movie 同步初始化时因缺少方法直接失败。
+        if not self.movie_database_id:
+            return None
+        return self.client.databases.retrieve(database_id=self.movie_database_id)
 
     def get_week_relation_id(self, date):
         year = date.isocalendar().year
