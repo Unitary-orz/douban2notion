@@ -137,15 +137,24 @@ def insert_movie(douban_name,notion_helper):
                     for x in subject.get("genres")
                 ]
             if subject.get("actors"):
-                l = []
+                actor_names = []
                 actors = subject.get("actors")[0:100]
                 for actor in actors:
                     if actor.get("name"):
                         if "/" in actor.get("name"):
-                            l.extend(actor.get("name").split("/"))
+                            actor_names.extend(actor.get("name").split("/"))
                         else:
-                            l.append(actor.get("name"))  
-                movie["演员"] = l
+                            actor_names.append(actor.get("name"))
+                if actor_names and notion_helper.actor_database_id:
+                    movie["演员"] = [
+                        notion_helper.get_relation_id(
+                            actor_name.strip(),
+                            notion_helper.actor_database_id,
+                            USER_ICON_URL,
+                        )
+                        for actor_name in actor_names
+                        if actor_name.strip()
+                    ]
             if subject.get("directors"):
                 movie["导演"] = [
                     notion_helper.get_relation_id(
