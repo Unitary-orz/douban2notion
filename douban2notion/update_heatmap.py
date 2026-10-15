@@ -36,12 +36,10 @@ def main():
             f"https://raw.githubusercontent.com/{repository}/"
             f"{artifact_branch}/{image_path}"
         )
-        heatmap_url = f"https://heatmap.malinkang.com/?image={image_url}"
-
         if notion_helper.heatmap_block_id:
             notion_helper.update_heatmap(
                 block_id=notion_helper.heatmap_block_id,
-                url=heatmap_url,
+                url=image_url,
             )
 
 
