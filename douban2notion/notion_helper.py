@@ -118,7 +118,11 @@ class NotionHelper:
                     child.get("child_database").get("title")
                 ] = child.get("id")
             elif child["type"] == "embed" and child.get("embed").get("url"):
-                if child.get("embed").get("url").startswith("https://heatmap.malinkang.com/"):
+                embed_url = child.get("embed").get("url")
+                if (
+                    embed_url.startswith("https://heatmap.malinkang.com/")
+                    or "/heatmap-artifacts/OUT_FOLDER/" in embed_url
+                ):
                     self.heatmap_block_id = child.get("id")
             # 如果子块有子块，递归调用函数
             if "has_children" in child and child["has_children"]:
