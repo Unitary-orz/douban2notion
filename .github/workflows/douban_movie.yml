@@ -11,6 +11,7 @@ jobs:
   sync:
     name: Sync
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     env:
         NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
         MOVIE_NOTION_TOKEN: ${{ secrets.MOVIE_NOTION_TOKEN }}
